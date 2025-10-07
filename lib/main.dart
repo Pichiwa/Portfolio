@@ -29,13 +29,13 @@ class _MyAppState extends State<MyApp> {
       themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: const Color.fromARGB(255, 250, 250, 249),
+        colorSchemeSeed: const Color(0xFF90CAF9), // Light blue tone
         brightness: Brightness.light,
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.dark,
-        colorSchemeSeed: const Color.fromARGB(234, 255, 255, 255),
+        colorSchemeSeed: const Color(0xFF90CAF9),
       ),
       home: Homepage(
         isDarkMode: isDark,

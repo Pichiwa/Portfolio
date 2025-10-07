@@ -12,7 +12,6 @@ class Homepage extends StatelessWidget {
     required this.onThemeToggle,
   });
 
-  // ✅ Function to launch URLs
   Future<void> _launchUrl(String url) async {
     final Uri uri = Uri.parse(url);
     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
@@ -36,17 +35,15 @@ class Homepage extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            // Profile Picture
-            Center(
+            const Center(
               child: CircleAvatar(
                 radius: 50,
-                backgroundImage: const AssetImage('assets/images/profile.jpg'),
+                backgroundImage: AssetImage('assets/images/profile.jpg'),
                 backgroundColor: Colors.transparent,
               ),
             ),
             const SizedBox(height: 16),
 
-            // Profile Card
             _buildShadowCard(
               context,
               Column(
@@ -67,7 +64,6 @@ class Homepage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
 
-            // Projects Card
             _buildShadowCard(
               context,
               Column(
@@ -82,20 +78,19 @@ class Homepage extends StatelessWidget {
                     "Single-Page Portfolio App",
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
-                  Text("Making portfolio using Flutter"),
+                  Text("- Creating a personal portfolio using Flutter."),
                 ],
               ),
             ),
             const SizedBox(height: 16),
 
-            // Skills Card
             _buildShadowCard(
               context,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
                   Text(
-                    "• Skills Section",
+                    "• Skills",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
@@ -106,7 +101,6 @@ class Homepage extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Social Icons Row
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -122,7 +116,7 @@ class Homepage extends StatelessWidget {
                   icon: const Icon(Icons.email, size: 32),
                   color: theme.colorScheme.primary,
                   onPressed: () {
-                    _launchUrl('https://mail.google.com/mail/u/0/#inbox?compose=new');
+                    _launchUrl('mailto:jongjans120gmail.com');
                   },
                 ),
                 const SizedBox(width: 20),
@@ -130,7 +124,9 @@ class Homepage extends StatelessWidget {
                   icon: const FaIcon(FontAwesomeIcons.github, size: 32),
                   color: theme.colorScheme.primary,
                   onPressed: () {
-                    _launchUrl('https://github.com/yourusername');
+                    _launchUrl(
+                      'https://github.com/Pichiwa/PROFILE_CODE--MASTER/tree/master',
+                    );
                   },
                 ),
               ],
@@ -141,19 +137,20 @@ class Homepage extends StatelessWidget {
     );
   }
 
+  // 🧱 Reusable Card Builder
   Widget _buildShadowCard(BuildContext context, Widget child) {
     final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: theme.cardColor,
-        border: Border.all(color: theme.colorScheme.onSurface, width: 1.5),
+        border: Border.all(color: theme.dividerColor, width: 1),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: theme.shadowColor.withOpacity(0.4),
-            offset: const Offset(4, 4),
-            blurRadius: 6,
+            color: theme.shadowColor.withOpacity(0.3),
+            offset: const Offset(3, 3),
+            blurRadius: 5,
           ),
         ],
       ),
